@@ -4,6 +4,7 @@ import arrow.core.getOrElse
 import arrow.core.getOrNone
 import arrow.core.raise.either
 import arrow.core.raise.ensure
+import com.joseph.exhibition.core.common.utils.recordException
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.appwrite.services.Databases
@@ -33,9 +34,20 @@ class AppWriteDbDataSource @AssistedInject constructor(
     ): T {
         val result = this.getOrDefault(key, default)
         return either {
-            ensure(result is T) { "Type casting is value, returning as default" }
+            ensure(result is T) {
+                "Type casting failure for key: $key, returning as default"
+            }
             result
-        }.getOrElse { default }
+        }.onLeft {
+            recordException(
+                it,
+                "databaseId" to databaseId,
+                "collectionId" to collectionId,
+                "key" to key
+            )
+        }.getOrElse {
+            default
+        }
     }
 
     override suspend fun getMap(documentId: String): Map<String, Any> {
