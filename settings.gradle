@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -8,8 +9,23 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
+        jcenter()
+        gradlePluginPortal()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://jitpack.io' }
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    versionCatalogs {
+        core {
+            from(files("gradle/core.versions.toml"))
+        }
+        test {
+            from(files("gradle/test.versions.toml"))
+        }
     }
 }
 rootProject.name = "Exhibition"

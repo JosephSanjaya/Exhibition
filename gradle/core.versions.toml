@@ -1,0 +1,140 @@
+[versions]
+## App Target and Version
+sdk-target                  = "33"
+build-tools                 = "34.0.0-rc3"
+sdk-min                     = "24"
+app-code                    = "1"
+app-name                    = "1.0.0"
+## -----------------------------------
+
+android-gradle              = "8.0.1"
+kotlin                      = "1.8.21"
+detekt                      = "1.22.0"
+detekt-twitter-compose      = "0.0.26"
+gradle-cache                = "2.7.1"
+google-services-plugin      = "4.3.15"
+desugar                     = "1.1.5"
+coroutines                  = "1.6.4"
+ksp                         = "1.8.21-1.0.11"
+core-ktx                    = "1.9.0"
+splitties                   = "3.0.0"
+lifecycle                   = "2.5.1"
+lich                        = "1.7.0"
+joda-money                  = "1.0.3"
+apache-lang3-common         = "3.12.0"
+blankj-proguard             = "1.0.2"
+eventbus                    = "3.3.1"
+firebase-bom                = "31.2.0"
+arrow                       = "1.2.0-RC"
+android-multidex            = "2.0.1"
+profile-installer           = "1.2.2"
+compressor                  = "3.0.1"
+
+# region classpath version
+firebase-crashlytics        = "2.9.2"
+firebase-pref               = "1.4.2"
+# endregion
+
+[libraries]
+desugar                     = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
+ksp                         = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+# region Detekt
+detekt-cli                  = { module = "io.gitlab.arturbosch.detekt:detekt-cli", version.ref = "detekt" }
+detekt-formatting           = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-compose              = { module = "com.twitter.compose.rules:detekt", version.ref = "detekt-twitter-compose" }
+
+# region Arrow
+arrow-stack                 = { module = "io.arrow-kt:arrow-stack", version.ref = "arrow" }
+arrow-core                  = { module = "io.arrow-kt:arrow-core" }
+arrow-fx                    = { module = "io.arrow-kt:arrow-fx-coroutines" }
+arrow-optics                = { module = "io.arrow-kt:arrow-optics" }
+arrow-optics-compiler       = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
+# endregion
+
+# region kotlin
+kotlin-stdlib               = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib-jdk8          = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflect              = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+coroutine-core              = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutine-android           = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutine-test              = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+# endregion
+
+# region Firebase
+firebase-bom                = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-crashlytics        = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-dynamic-link       = { module = "com.google.firebase:firebase-dynamic-links-ktx" }
+firebase-messaging          = { module = "com.google.firebase:firebase-messaging-ktx" }
+firebase-in-app             = { module = "com.google.firebase:firebase-inappmessaging-display-ktx" }
+firebase-analytics          = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-perf               = { module = "com.google.firebase:firebase-perf-ktx" }
+# endregion
+
+# region Androidx App
+android-multidex            = { module = "androidx.multidex:multidex", version.ref = "android-multidex" }
+android-core                = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+# endregion
+
+# region lifecycle
+lifecycle-viewmodel         = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+lifecycle-livedata          = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+lifecycle-savedstate        = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "lifecycle" }
+lifecycle-compiler          = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
+lifecycle-java8             = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "lifecycle" }
+lifecycle-services          = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle" }
+lifecycle-process           = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
+lifecycle-reactivestream    = { module = "androidx.lifecycle:lifecycle-reactivestreams-ktx", version.ref = "lifecycle" }
+lifecycle-test              = { module = "androidx.lifecycle:lifecycle-runtime-testing", version.ref = "lifecycle" }
+# endregion
+
+# region splitties
+splitties-app-ctx           = { module = "com.louiscad.splitties:splitties-appctx", version.ref = "splitties" }
+splitties-room              = { module = "com.louiscad.splitties:splitties-arch-room", version.ref = "splitties" }
+splitties-systemservices    = { module = "com.louiscad.splitties:splitties-systemservices", version.ref = "splitties" }
+splitties-intents           = { module = "com.louiscad.splitties:splitties-intents", version.ref = "splitties" }
+splitties-fragments         = { module = "com.louiscad.splitties:splitties-fragments", version.ref = "splitties" }
+splitties-fragmentargs      = { module = "com.louiscad.splitties:splitties-fragmentargs", version.ref = "splitties" }
+splitties-bundle            = { module = "com.louiscad.splitties:splitties-bundle", version.ref = "splitties" }
+splitties-coroutines        = { module = "com.louiscad.splitties:splitties-coroutines", version.ref = "splitties" }
+splitties-lifecycle-coroutines = { module = "com.louiscad.splitties:splitties-lifecycle-coroutines", version.ref = "splitties" }
+splitties-mainthread        = { module = "com.louiscad.splitties:splitties-mainthread", version.ref = "splitties" }
+splitties-mainhandler       = { module = "com.louiscad.splitties:splitties-mainhandler", version.ref = "splitties" }
+splitties-checkedlazy       = { module = "com.louiscad.splitties:splitties-checkedlazy", version.ref = "splitties" }
+# endregion
+blankj-proguard             = { module = "com.blankj:free-proguard", version.ref = "blankj-proguard" }
+apache-common               = { module = "org.apache.commons:commons-lang3", version.ref = "apache-lang3-common" }
+eventbus                    = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+lich                        = { module = "com.linecorp.lich:savedstate", version.ref = "lich" }
+lich-compiler               = { module = "com.linecorp.lich:savedstate-compiler", version.ref = "lich" }
+profile-installer           = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profile-installer" }
+
+# region classpath libs
+google-services             = { module = "com.google.gms:google-services", version.ref = "google-services-plugin" }
+firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "firebase-crashlytics" }
+firebase-pref-gradle        = { module = "com.google.firebase:perf-plugin", version.ref = "firebase-pref" }
+# endregion
+compressor                  = { module = "id.zelory:compressor", version.ref = "compressor" }
+
+[bundles]
+kotlin                      = ["kotlin-stdlib", "kotlin-stdlib-jdk8", "kotlin-reflect"]
+arrow                       = ["arrow-core", "arrow-fx", "arrow-optics"]
+androidx-app                = ["android-multidex", "android-core"]
+firebase-package            = ["firebase-crashlytics", "firebase-messaging", "firebase-analytics", "firebase-dynamic-link", "firebase-in-app", "firebase-perf" ]
+firebase-plugins            = ["google-services", "firebase-crashlytics-gradle", "firebase-pref-gradle" ]
+lifecycle                   = ["lifecycle-viewmodel", "lifecycle-viewmodel-compose", "lifecycle-livedata", "lifecycle-savedstate",
+    "lifecycle-java8", "lifecycle-services", "lifecycle-process", "lifecycle-reactivestream"]
+coroutines                  = ["coroutine-core", "coroutine-android" ]
+splitties                   = ["splitties-app-ctx", "splitties-room", "splitties-systemservices", "splitties-intents",
+                                "splitties-fragments", "splitties-fragmentargs", "splitties-bundle", "splitties-coroutines",
+                                "splitties-lifecycle-coroutines", "splitties-mainthread", "splitties-mainhandler", "splitties-checkedlazy"]
+
+[plugins]
+android-app                 = { id = "com.android.application", version.ref = "android-gradle" }
+android-library             = { id = "com.android.library", version.ref = "android-gradle" }
+android-test                = { id = "com.android.test", version.ref = "android-gradle" }
+kotlin                      = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-noarg                = { id = "org.jetbrains.kotlin.plugin.noarg", version.ref = "kotlin" }
+gradle-cache-fix            = { id = "org.gradle.android.cache-fix", version.ref = "gradle-cache" }
+detekt                      = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
