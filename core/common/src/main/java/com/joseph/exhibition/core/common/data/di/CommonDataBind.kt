@@ -1,5 +1,7 @@
 package com.joseph.exhibition.core.common.data.di
 
+import com.joseph.exhibition.core.common.data.cache.CacheDataSource
+import com.joseph.exhibition.core.common.data.cache.CacheRepo
 import com.joseph.exhibition.core.common.data.remoteconfig.FlagConfigDataSource
 import com.joseph.exhibition.core.common.data.remoteconfig.FlagConfigRepo
 import dagger.Binds
@@ -21,4 +23,12 @@ abstract class CommonDataBind {
      */
     @Binds
     abstract fun bindRemoteConfig(dataSource: FlagConfigDataSource): FlagConfigRepo
+
+    /**
+     * Binds the CacheDataSource class to the CacheRepo interface for dependency injection.
+     * @param dataSource The CacheDataSource instance to bind.
+     * @return The CacheRepo instance to inject.
+     */
+    @Binds
+    abstract fun bindCache(dataSource: CacheDataSource): CacheRepo
 }

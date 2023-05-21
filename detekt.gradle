@@ -15,7 +15,7 @@ task detektCheck(type: JavaExec) {
     def config = "config/detekt/detekt.yml"
     def exclude = ".*/resources/.*,.*/build/.*, .idea/.*', '.*/build/.*', 'build/.*', '.gradle/.*, " +
             "'.*/src/test/.*', '.*/src/androidTest/.*', '.*/.*/src/test/.*', '.*/.*/src/androidTest/.*', " +
-            "'.*/.*/.*/src/test/.*', '.*/.*/.*/src/androidTest/.*'"
+            "'.*/.*/.*/src/test/.*', '.*/.*/.*/src/androidTest/.*', '.*/.*/build/.*',"
     def plugins = "config/detekt/plugins/detekt-twitter-compose-0.0.26-all.jar, config/detekt/plugins/detekt-formatting-1.23.0-RC3.jar"
     def report = "html:${project.buildDir}/reports/detekt.html"
     def params = ['-i', input, '-c', config, '-ex', exclude, '-r', report, '-p', plugins]

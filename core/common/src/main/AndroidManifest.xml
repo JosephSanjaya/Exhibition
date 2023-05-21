@@ -11,6 +11,9 @@
             <!-- This entry makes ExampleLoggerInitializer discoverable. -->
             <meta-data  android:name="com.joseph.exhibition.core.common.initializer.AppWriteClientInitializer"
                 android:value="androidx.startup" />
+
+            <meta-data  android:name="com.joseph.exhibition.core.common.initializer.CommonComponentInitializer"
+                android:value="androidx.startup" />
         </provider>
     </application>
 </manifest>

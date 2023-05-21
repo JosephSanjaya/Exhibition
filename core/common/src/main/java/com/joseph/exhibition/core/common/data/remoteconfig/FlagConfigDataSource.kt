@@ -3,6 +3,7 @@ package com.joseph.exhibition.core.common.data.remoteconfig
 import com.joseph.exhibition.core.common.BuildConfig
 import com.joseph.exhibition.core.common.data.appwrite.AppWriteDbFactory
 import com.joseph.exhibition.core.common.data.appwrite.AppWriteDbRepo
+import com.joseph.exhibition.core.common.data.cache.CacheRepo
 import javax.inject.Inject
 
 /**
@@ -11,6 +12,7 @@ import javax.inject.Inject
  */
 class FlagConfigDataSource @Inject constructor(
     factory: AppWriteDbFactory,
+    private val cacheRepo: CacheRepo,
 ) : FlagConfigRepo {
 
     companion object {
@@ -22,7 +24,7 @@ class FlagConfigDataSource @Inject constructor(
     }
 
     // The AppWriteDbRepo instance to use for accessing the flag configuration collection
-    private var source: AppWriteDbRepo = factory.create(
+    private val source: AppWriteDbRepo = factory.create(
         BuildConfig.REMOTE_CONFIG_DB_ID,
         BuildConfig.REMOTE_CONFIG_FLAG_ID
     )
@@ -32,6 +34,9 @@ class FlagConfigDataSource @Inject constructor(
      * @return True if the app requires a force update, false otherwise.
      */
     override suspend fun isForceUpdate(): Boolean {
-        return source.getBoolean(FORCE_UPDATE_DOC_KEY, FORCE_UPDATE_VAL_KEY, false)
+        val result = cacheRepo.get(FORCE_UPDATE_DOC_KEY, onCacheMiss = {
+            source.getBoolean(FORCE_UPDATE_DOC_KEY, FORCE_UPDATE_VAL_KEY, false)
+        })
+        return result
     }
 }

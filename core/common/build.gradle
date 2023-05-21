@@ -31,6 +31,7 @@ dependencies {
     api platform(core.arrow.stack)
     api core.bundles.arrow
     ksp core.arrow.optics.compiler
+    api core.mmkv
 
     api core.apache.common
     api core.eventbus

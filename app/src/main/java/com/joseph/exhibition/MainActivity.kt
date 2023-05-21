@@ -1,6 +1,8 @@
 package com.joseph.exhibition
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.joseph.exhibition.core.common.data.remoteconfig.FlagConfigRepo
 import com.joseph.exhibition.ui.theme.ExhibitionTheme
@@ -26,6 +29,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var auth: Account
+
+    @Inject
+    lateinit var sharedPref: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
@@ -33,12 +39,16 @@ class MainActivity : ComponentActivity() {
                 email = "joseph.sanjaya@yahoo.com",
                 password = "Qwerty12"
             ).also {
+                sharedPref.edit {
+                    putString("deviceName", it.deviceName)
+                }
                 kotlin.runCatching {
                     val isForceUpdate = remoteConfigRepo.isForceUpdate().toString()
                     println(isForceUpdate)
                 }.getOrElse {
                     println(it)
                 }
+                Toast.makeText(this@MainActivity, sharedPref.getString("deviceName", "null"), Toast.LENGTH_SHORT).show()
             }
         }
         setContent {
