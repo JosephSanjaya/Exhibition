@@ -10,6 +10,8 @@ android {
     defaultConfig {
         buildConfigField 'String', 'APPWRITE_PROJECT_ID', "\"${local.getProperty('APPWRITE_PROJECT_ID')}\""
         buildConfigField 'String', 'APPWRITE_HOST', "\"${local.getProperty('APPWRITE_HOST')}\""
+        buildConfigField 'String', 'REMOTE_CONFIG_DB_ID', "\"${local.getProperty('REMOTE_CONFIG_DB_ID')}\""
+        buildConfigField 'String', 'REMOTE_CONFIG_FLAG_ID', "\"${local.getProperty('REMOTE_CONFIG_FLAG_ID')}\""
     }
     buildFeatures {
         buildConfig true

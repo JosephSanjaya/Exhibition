@@ -10,11 +10,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
+import com.joseph.exhibition.core.common.data.remoteconfig.FlagConfigRepo
 import com.joseph.exhibition.ui.theme.ExhibitionTheme
+import dagger.hilt.android.AndroidEntryPoint
+import io.appwrite.services.Account
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var remoteConfigRepo: FlagConfigRepo
+
+    @Inject
+    lateinit var auth: Account
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            auth.createEmailSession(
+                email = "joseph.sanjaya@yahoo.com",
+                password = "Qwerty12"
+            ).also {
+                kotlin.runCatching {
+                    val isForceUpdate = remoteConfigRepo.isForceUpdate().toString()
+                    println(isForceUpdate)
+                }.getOrElse {
+                    println(it)
+                }
+            }
+        }
         setContent {
             ExhibitionTheme {
                 // A surface container using the 'background' color from the theme
