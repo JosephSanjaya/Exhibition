@@ -9,7 +9,7 @@ app-name                    = "1.0.0"
 
 android-gradle              = "8.0.1"
 kotlin                      = "1.8.21"
-detekt                      = "1.22.0"
+detekt                      = "1.23.0-RC3"
 detekt-twitter-compose      = "0.0.26"
 gradle-cache                = "2.7.1"
 google-services-plugin      = "4.3.15"
@@ -29,6 +29,7 @@ arrow                       = "1.2.0-RC"
 android-multidex            = "2.0.1"
 profile-installer           = "1.2.2"
 compressor                  = "3.0.1"
+appwrite                    = "2.0.0"
 
 # region classpath version
 firebase-crashlytics        = "2.9.2"
@@ -103,7 +104,6 @@ splitties-mainthread        = { module = "com.louiscad.splitties:splitties-maint
 splitties-mainhandler       = { module = "com.louiscad.splitties:splitties-mainhandler", version.ref = "splitties" }
 splitties-checkedlazy       = { module = "com.louiscad.splitties:splitties-checkedlazy", version.ref = "splitties" }
 # endregion
-blankj-proguard             = { module = "com.blankj:free-proguard", version.ref = "blankj-proguard" }
 apache-common               = { module = "org.apache.commons:commons-lang3", version.ref = "apache-lang3-common" }
 eventbus                    = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 lich                        = { module = "com.linecorp.lich:savedstate", version.ref = "lich" }
@@ -116,6 +116,7 @@ firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlyti
 firebase-pref-gradle        = { module = "com.google.firebase:perf-plugin", version.ref = "firebase-pref" }
 # endregion
 compressor                  = { module = "id.zelory:compressor", version.ref = "compressor" }
+appwrite                    = { module = "io.appwrite:sdk-for-android", version.ref = "appwrite" }
 
 [bundles]
 kotlin                      = ["kotlin-stdlib", "kotlin-stdlib-jdk8", "kotlin-reflect"]

@@ -57,6 +57,7 @@ subprojects {
                 buildFeatures {
                     dataBinding true
                     viewBinding true
+                    compose true
                 }
                 compileOptions {
                     coreLibraryDesugaringEnabled true
@@ -67,6 +68,14 @@ subprojects {
                     checkReleaseBuilds false
                     textReport true
                     abortOnError false
+                }
+                composeOptions {
+                    kotlinCompilerExtensionVersion '1.4.7'
+                }
+                packagingOptions {
+                    resources {
+                        excludes += '/META-INF/{AL2.0,LGPL2.1}'
+                    }
                 }
             }
             it.dependencies {
@@ -90,7 +99,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.Experimental"
         )
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_17
     }
 }
 

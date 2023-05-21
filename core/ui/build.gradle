@@ -1,0 +1,13 @@
+plugins {
+    id("com.google.devtools.ksp")
+}
+
+android {
+    namespace 'com.joseph.exhibition.core.ui'
+}
+
+dependencies {
+    api platform(ui.compose.bom)
+    api ui.bundles.compose.ui
+    debugApi ui.bundles.compose.debug
+}
