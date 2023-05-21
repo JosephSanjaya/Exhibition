@@ -4,6 +4,9 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
+Properties local = new Properties()
+local.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.joseph.exhibition'
     bundle {
@@ -13,6 +16,12 @@ android {
     }
     defaultConfig {
         multiDexEnabled true
+        manifestPlaceholders = [
+                projectId: "${local.getProperty('APPWRITE_PROJECT_ID')}"
+        ]
+    }
+    buildFeatures {
+        buildConfig true
     }
     buildTypes {
         release {
@@ -35,6 +44,7 @@ android {
 
 dependencies {
     implementation(core.profile.installer)
+    kapt core.hilt.compiler
     implementation project(':core:common')
     implementation project(':core:ui')
 }

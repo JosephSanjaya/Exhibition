@@ -10,4 +10,5 @@ dependencies {
     api platform(ui.compose.bom)
     api ui.bundles.compose.ui
     debugApi ui.bundles.compose.debug
+    kapt core.hilt.compiler
 }

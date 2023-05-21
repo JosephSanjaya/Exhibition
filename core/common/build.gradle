@@ -2,14 +2,22 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+Properties local = new Properties()
+local.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.joseph.exhibition.core.common'
+    defaultConfig {
+        buildConfigField 'String', 'APPWRITE_PROJECT_ID', "\"${local.getProperty('APPWRITE_PROJECT_ID')}\""
+        buildConfigField 'String', 'APPWRITE_HOST', "\"${local.getProperty('APPWRITE_HOST')}\""
+    }
     buildFeatures {
         buildConfig true
     }
 }
 
 dependencies {
+    kapt core.hilt.compiler
     api platform(core.firebase.bom)
     api core.bundles.firebase.package
     api core.bundles.lifecycle
@@ -24,6 +32,7 @@ dependencies {
 
     api core.apache.common
     api core.eventbus
+    api core.app.init
     api core.compressor
     api core.appwrite
 

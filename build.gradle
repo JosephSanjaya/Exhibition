@@ -12,13 +12,16 @@ plugins {
     alias(core.plugins.kotlin) apply false
     alias(core.plugins.kotlin.noarg) apply false
     alias(core.plugins.gradle.cache.fix) apply false
+    alias(core.plugins.hilt) apply false
     alias(core.plugins.detekt)
 }
 
 subprojects {
     plugins.withType(com.android.build.gradle.api.AndroidBasePlugin) { plugin ->
+
         if (it.name != "benchmark") {
             it.apply plugin: "org.gradle.android.cache-fix"
+            it.apply plugin: 'dagger.hilt.android.plugin'
             it.apply plugin: "kotlin-android"
             it.apply plugin: "kotlin-parcelize"
             it.apply plugin: "kotlin-kapt"
@@ -55,8 +58,6 @@ subprojects {
                     }
                 }
                 buildFeatures {
-                    dataBinding true
-                    viewBinding true
                     compose true
                 }
                 compileOptions {
@@ -80,6 +81,7 @@ subprojects {
             }
             it.dependencies {
                 coreLibraryDesugaring core.desugar
+                implementation core.hilt.core
                 testImplementation core.lifecycle.test
                 testImplementation test.bundles.test
                 androidTestImplementation test.bundles.android.test

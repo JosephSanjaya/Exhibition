@@ -9,6 +9,7 @@ app-name                    = "1.0.0"
 
 android-gradle              = "8.0.1"
 kotlin                      = "1.8.21"
+hilt                        = "2.44"
 detekt                      = "1.23.0-RC3"
 detekt-twitter-compose      = "0.0.26"
 gradle-cache                = "2.7.1"
@@ -28,6 +29,7 @@ firebase-bom                = "31.2.0"
 arrow                       = "1.2.0-RC"
 android-multidex            = "2.0.1"
 profile-installer           = "1.2.2"
+app-init                    = "1.1.1"
 compressor                  = "3.0.1"
 appwrite                    = "2.0.0"
 
@@ -38,6 +40,8 @@ firebase-pref               = "1.4.2"
 
 [libraries]
 desugar                     = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
+hilt-core                   = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler               = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 ksp                         = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
 # region Detekt
@@ -109,6 +113,7 @@ eventbus                    = { module = "org.greenrobot:eventbus", version.ref 
 lich                        = { module = "com.linecorp.lich:savedstate", version.ref = "lich" }
 lich-compiler               = { module = "com.linecorp.lich:savedstate-compiler", version.ref = "lich" }
 profile-installer           = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profile-installer" }
+app-init                    = { module = "androidx.startup:startup-runtime", version.ref = "app-init" }
 
 # region classpath libs
 google-services             = { module = "com.google.gms:google-services", version.ref = "google-services-plugin" }
@@ -138,4 +143,5 @@ android-test                = { id = "com.android.test", version.ref = "android-
 kotlin                      = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-noarg                = { id = "org.jetbrains.kotlin.plugin.noarg", version.ref = "kotlin" }
 gradle-cache-fix            = { id = "org.gradle.android.cache-fix", version.ref = "gradle-cache" }
+hilt                        = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt                      = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
