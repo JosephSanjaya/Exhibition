@@ -11,7 +11,7 @@ import java.lang.Exception
  * @param params The optional custom key-value pairs to associate with the exception in Crashlytics.
  * The values are converted to the appropriate data type based on their runtime type.
  */
-fun Any.recordException(throwable: Throwable, vararg params: Pair<String, Any>) {
+fun Any.logNonFatal(throwable: Throwable, vararg params: Pair<String, Any>) {
     // Use a private function to log and set custom keys
     logAndSetCustomKeys(throwable.message ?: "Unknown error", *params)
     // Log the throwable object to the console
@@ -26,7 +26,7 @@ fun Any.recordException(throwable: Throwable, vararg params: Pair<String, Any>) 
  * @param params The optional custom key-value pairs to associate with the exception in Crashlytics.
  * The values are converted to the appropriate data type based on their runtime type.
  */
-fun Any.recordException(msg: String, vararg params: Pair<String, Any>) {
+fun Any.logNonFatal(msg: String, vararg params: Pair<String, Any>) {
     // Use a private function to log and set custom keys
     logAndSetCustomKeys(msg, *params)
     // Create an exception object with the message

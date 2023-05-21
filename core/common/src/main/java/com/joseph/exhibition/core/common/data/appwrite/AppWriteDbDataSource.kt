@@ -4,7 +4,7 @@ import arrow.core.getOrElse
 import arrow.core.getOrNone
 import arrow.core.raise.either
 import arrow.core.raise.ensure
-import com.joseph.exhibition.core.common.utils.recordException
+import com.joseph.exhibition.core.common.utils.logNonFatal
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.appwrite.services.Databases
@@ -39,7 +39,7 @@ class AppWriteDbDataSource @AssistedInject constructor(
             }
             result
         }.onLeft {
-            recordException(
+            logNonFatal(
                 it,
                 "databaseId" to databaseId,
                 "collectionId" to collectionId,
@@ -50,35 +50,70 @@ class AppWriteDbDataSource @AssistedInject constructor(
         }
     }
 
-    override suspend fun getMap(documentId: String): Map<String, Any> {
-        return db.getDocument(databaseId, collectionId, documentId).data
+    override suspend fun getMap(documentId: String, vararg queries: String): Map<String, Any> {
+        return db.getDocument(databaseId, collectionId, documentId, queries.toList()).data
     }
 
-    override suspend fun get(documentId: String, key: String, default: Any): Any {
-        return getMap(documentId).getOrNone(key)
+    override suspend fun get(
+        documentId: String,
+        key: String,
+        default: Any,
+        vararg queries: String,
+    ): Any {
+        return getMap(documentId, *queries).getOrNone(key)
     }
 
-    override suspend fun getString(documentId: String, key: String, default: String): String {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getString(
+        documentId: String,
+        key: String,
+        default: String,
+        vararg queries: String,
+    ): String {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 
-    override suspend fun getBoolean(documentId: String, key: String, default: Boolean): Boolean {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getBoolean(
+        documentId: String,
+        key: String,
+        default: Boolean,
+        vararg queries: String,
+    ): Boolean {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 
-    override suspend fun getInt(documentId: String, key: String, default: Int): Int {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getInt(
+        documentId: String,
+        key: String,
+        default: Int,
+        vararg queries: String,
+    ): Int {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 
-    override suspend fun getLong(documentId: String, key: String, default: Long): Long {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getLong(
+        documentId: String,
+        key: String,
+        default: Long,
+        vararg queries: String,
+    ): Long {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 
-    override suspend fun getDouble(documentId: String, key: String, default: Double): Double {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getDouble(
+        documentId: String,
+        key: String,
+        default: Double,
+        vararg queries: String,
+    ): Double {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 
-    override suspend fun getFloat(documentId: String, key: String, default: Float): Float {
-        return getMap(documentId).getByKeyAs(key, default)
+    override suspend fun getFloat(
+        documentId: String,
+        key: String,
+        default: Float,
+        vararg queries: String,
+    ): Float {
+        return getMap(documentId, *queries).getByKeyAs(key, default)
     }
 }
