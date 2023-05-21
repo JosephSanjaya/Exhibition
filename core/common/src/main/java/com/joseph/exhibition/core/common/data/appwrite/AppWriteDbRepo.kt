@@ -66,7 +66,6 @@ interface AppWriteDbRepo {
      * @param default The default value to return if the key does not exist in the document or is not a double.
      * @return The double value associated with the key in the document,
      * or the default value if not found or not a double.
-     * @throws Exception If the document does not exist or the network request fails.
      */
     suspend fun getDouble(documentId: String, key: String, default: Double): Double
 
