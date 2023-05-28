@@ -1,10 +1,6 @@
 package com.joseph.exhibition.core.common.data.appwrite
 
-import arrow.core.getOrElse
-import arrow.core.getOrNone
-import arrow.core.raise.either
-import arrow.core.raise.ensure
-import com.joseph.exhibition.core.common.utils.logNonFatal
+import com.joseph.exhibition.core.common.utils.Logger
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.appwrite.services.Databases
@@ -17,6 +13,7 @@ import io.appwrite.services.Databases
  */
 class AppWriteDbDataSource @AssistedInject constructor(
     private val db: Databases,
+    private val logger: Logger,
     @Assisted("databaseId") private val databaseId: String,
     @Assisted("collectionId") private val collectionId: String,
 ) : AppWriteDbRepo {
@@ -33,13 +30,12 @@ class AppWriteDbDataSource @AssistedInject constructor(
         default: T,
     ): T {
         val result = this.getOrDefault(key, default)
-        return either {
-            ensure(result is T) {
-                "Type casting failure for key: $key, returning as default"
-            }
-            result
-        }.onLeft {
-            logNonFatal(
+        return runCatching {
+            val casted = result as? T
+            require(casted != null)
+            casted
+        }.onFailure {
+            logger.logIssueAsNonFatal(
                 it,
                 "databaseId" to databaseId,
                 "collectionId" to collectionId,
@@ -60,7 +56,7 @@ class AppWriteDbDataSource @AssistedInject constructor(
         default: Any,
         vararg queries: String,
     ): Any {
-        return getMap(documentId, *queries).getOrNone(key)
+        return getMap(documentId, *queries).getOrDefault(key, default)
     }
 
     override suspend fun getString(

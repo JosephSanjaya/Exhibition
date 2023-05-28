@@ -5,7 +5,7 @@ import android.security.keystore.KeyExpiredException
 import androidx.core.content.edit
 import com.google.gson.Gson
 import com.joseph.exhibition.core.common.data.cache.model.CacheData
-import com.joseph.exhibition.core.common.utils.logNonFatal
+import com.joseph.exhibition.core.common.utils.Logger
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject
@@ -19,6 +19,7 @@ import javax.inject.Named
 class CacheDataSource @Inject constructor(
     @Named(CacheRepo.NAMED) private val sharedPreferences: SharedPreferences,
     private val gson: Gson,
+    private val logger: Logger
 ) : CacheRepo {
 
     override suspend fun <T> get(
@@ -34,7 +35,7 @@ class CacheDataSource @Inject constructor(
             require(!result.isExpired()) { KeyExpiredException() }
             result
         }.getOrElse {
-            this.logNonFatal(it)
+            logger.logIssueAsNonFatal(it)
             val newData = create(key, onCacheMiss(), ttl)
             // Use apply to update and return the shared preferences value
             sharedPreferences.edit { putString(key, gson.toJson(newData)) }

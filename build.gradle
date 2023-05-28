@@ -28,6 +28,11 @@ subprojects {
 
             it.android {
                 testOptions {
+                    unitTests.all {
+                        it.useJUnitPlatform()
+                    }
+                }
+                testOptions {
                     unitTests.returnDefaultValues = true
                 }
                 compileSdk core.versions.sdk.target.get().toInteger()
@@ -83,6 +88,7 @@ subprojects {
                 coreLibraryDesugaring core.desugar
                 implementation core.hilt.core
                 testImplementation core.lifecycle.test
+                testImplementation core.coroutine.test
                 testImplementation test.bundles.test
                 androidTestImplementation test.bundles.android.test
             }

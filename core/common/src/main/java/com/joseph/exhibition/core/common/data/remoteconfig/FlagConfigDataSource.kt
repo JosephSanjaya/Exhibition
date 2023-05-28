@@ -17,10 +17,10 @@ class FlagConfigDataSource @Inject constructor(
 
     companion object {
         // The document ID for the force update flag
-        private const val FORCE_UPDATE_DOC_KEY = "is-force-update"
+        const val FORCE_UPDATE_DOC_KEY = "is-force-update"
 
         // The key for the force update value in the document
-        private const val FORCE_UPDATE_VAL_KEY = "value"
+        const val FORCE_UPDATE_VAL_KEY = "value"
     }
 
     // The AppWriteDbRepo instance to use for accessing the flag configuration collection
