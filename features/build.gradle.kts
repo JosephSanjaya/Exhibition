@@ -18,7 +18,6 @@ subprojects {
 
 dependencies {
     constraints {
-        api(project(":core:common"))
-        api(project(":core:ui"))
+        api(project(":features:test"))
     }
 }

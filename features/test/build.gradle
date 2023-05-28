@@ -1,0 +1,14 @@
+plugins {
+    id("com.google.devtools.ksp")
+}
+
+android {
+    namespace 'com.joseph.exhibition.features.test'
+}
+
+dependencies {
+    api project(':core:ui')
+    implementation core.hilt.core
+    kapt core.hilt.compiler
+    kapt core.lifecycle.compiler
+}

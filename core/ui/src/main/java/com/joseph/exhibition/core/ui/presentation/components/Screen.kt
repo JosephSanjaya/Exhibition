@@ -1,6 +1,5 @@
 package com.joseph.exhibition.core.ui.presentation.components
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,8 +17,7 @@ import androidx.compose.ui.semantics.testTagsAsResourceId
 
 @OptIn(
     ExperimentalMaterial3Api::class,
-    ExperimentalComposeUiApi::class,
-    ExperimentalLayoutApi::class
+    ExperimentalComposeUiApi::class
 )
 @Composable
 fun Screen(

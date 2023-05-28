@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.joseph.exhibition.core.ui.R
 
-val poppins = FontFamily(
+internal val poppins = FontFamily(
     Font(R.font.poppins_bold, FontWeight.Bold),
     Font(R.font.poppins_bolditalic, FontWeight.Bold, FontStyle.Italic),
     Font(R.font.poppins_extrabold, FontWeight.ExtraBold),

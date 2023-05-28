@@ -34,3 +34,4 @@ dependencyResolutionManagement {
 rootProject.name = "Exhibition"
 include ':app'
 include ':core', ':core:common', ':core:ui'
+include ':features', ':features:test'
