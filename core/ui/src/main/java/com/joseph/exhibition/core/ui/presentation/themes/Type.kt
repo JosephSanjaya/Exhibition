@@ -23,7 +23,7 @@ val poppins = FontFamily(
     Font(R.font.poppins_semibold, FontWeight.SemiBold),
     Font(R.font.poppins_semibolditalic, FontWeight.SemiBold, FontStyle.Italic),
 )
-internal val AwanTypography = Typography(
+internal val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = poppins,
         fontWeight = FontWeight.SemiBold,

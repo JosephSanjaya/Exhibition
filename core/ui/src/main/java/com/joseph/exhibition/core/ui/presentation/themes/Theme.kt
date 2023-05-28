@@ -234,7 +234,7 @@ internal fun MainTheme(
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = AwanTypography,
+            typography = Typography,
             shapes = shapes,
             content = content
         )
