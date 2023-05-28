@@ -14,6 +14,7 @@ import javax.inject.Inject
 class TestViewModel @Inject constructor(
     stateFactory: StateContainerFactory
 ) : ViewModel() {
+
     private val states: StateContainer = stateFactory.create(viewModelScope)
     val testState by states.state<State<String>>("test", State(null))
     private var _doTestJob: Job? = null
