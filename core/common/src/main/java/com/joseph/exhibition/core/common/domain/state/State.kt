@@ -11,4 +11,3 @@ data class State<T>(
     val loading: Boolean = false,
     val error: StateException? = null,
 )
-

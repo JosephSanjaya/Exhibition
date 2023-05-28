@@ -342,7 +342,7 @@ naming:
     active: false
     parameterPattern: '[a-z][A-Za-z0-9]*|_'
   MatchingDeclarationName:
-    active: true
+    active: false
     mustBeFirst: true
   MemberNameEqualsClassName:
     active: true
@@ -651,7 +651,7 @@ style:
     acceptableLength: 4
     allowNonStandardGrouping: false
   UnnecessaryAbstractClass:
-    active: true
+    active: false
   UnnecessaryAnnotationUseSiteTarget:
     active: false
   UnnecessaryApply:
@@ -720,6 +720,10 @@ style:
 TwitterCompose:
   CompositionLocalAllowlist:
     active: true
+    allowedCompositionLocals: [
+      "LocalBackgroundTheme",
+      "LocalGradientColors"
+    ]
   CompositionLocalNaming:
     active: true
   ContentEmitterReturningValues:

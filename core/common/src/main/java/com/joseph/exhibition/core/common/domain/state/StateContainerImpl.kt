@@ -85,7 +85,10 @@ class StateContainerImpl @AssistedInject constructor(
      * @param currentState The current state of the key.
      * @return A new state with the error and loading fields updated.
      */
-    private fun<T> handleTimeoutError(e: SocketTimeoutException, currentState: State<T>): State<T> {
+    private fun <T> handleTimeoutError(
+        e: SocketTimeoutException,
+        currentState: State<T>
+    ): State<T> {
         return currentState.copy(
             error = StateException(
                 e.message ?: "Unknown Error",
@@ -102,7 +105,7 @@ class StateContainerImpl @AssistedInject constructor(
      * @param currentState The current state of the key.
      * @return A new state with the error and loading fields updated.
      */
-    private fun<T> handleNetworkError(e: UnknownHostException, currentState: State<T>): State<T> {
+    private fun <T> handleNetworkError(e: UnknownHostException, currentState: State<T>): State<T> {
         return currentState.copy(
             error = StateException(
                 e.message ?: "Unknown Error",
@@ -119,7 +122,7 @@ class StateContainerImpl @AssistedInject constructor(
      * @param currentState The current state of the key.
      * @return A new state with the error and loading fields updated.
      */
-    private fun<T> handleAppWriteError(e: AppwriteException, currentState: State<T>): State<T> {
+    private fun <T> handleAppWriteError(e: AppwriteException, currentState: State<T>): State<T> {
         return currentState.copy(
             error = StateException(
                 e.message ?: "Unknown Error",
@@ -137,7 +140,7 @@ class StateContainerImpl @AssistedInject constructor(
      * @param currentState The current state of the key.
      * @return A new state with the error and loading fields updated.
      */
-    private fun<T> handleUnknownError(e: Throwable, currentState: State<T>): State<T> {
+    private fun <T> handleUnknownError(e: Throwable, currentState: State<T>): State<T> {
         return currentState.copy(
             error = StateException(
                 e.message ?: "Unknown Error",

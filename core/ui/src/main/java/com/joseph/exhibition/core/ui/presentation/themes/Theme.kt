@@ -3,7 +3,11 @@ package com.joseph.exhibition.core.ui.presentation.themes
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.annotation.VisibleForTesting
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
@@ -171,7 +175,6 @@ val DarkAndroidBackgroundTheme = BackgroundTheme(color = White)
  */
 @Composable
 fun MainTheme(
-    // TODO: replace with this if dark mode is necessary
     // darkTheme: Boolean = isSystemInDarkTheme(),
     darkTheme: Boolean = false,
     androidTheme: Boolean = true,
@@ -195,7 +198,6 @@ fun MainTheme(
  */
 @Composable
 internal fun MainTheme(
-    // TODO: replace with this if dark mode is necessary
     // darkTheme: Boolean = isSystemInDarkTheme(),
     darkTheme: Boolean = false,
     androidTheme: Boolean = true,

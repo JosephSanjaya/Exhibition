@@ -35,4 +35,3 @@ class StateContainerImplTest : StringSpec({
         stateContainer.getState(testKey, defaultValue).value shouldBe newStateValue
     }
 })
-

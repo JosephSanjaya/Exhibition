@@ -55,4 +55,3 @@ class LoggerImplTest : FunSpec({
         exceptionSlot.captured.message shouldBe msg
     }
 })
-

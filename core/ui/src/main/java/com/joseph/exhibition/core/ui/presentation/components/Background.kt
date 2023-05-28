@@ -23,7 +23,6 @@ import com.joseph.exhibition.core.ui.presentation.themes.LocalGradientColors
 import com.joseph.exhibition.core.ui.presentation.themes.MainTheme
 import kotlin.math.tan
 
-
 /**
  * The main background for the app.
  * Uses [LocalBackgroundTheme] to set the color and tonal elevation of a [Box].
