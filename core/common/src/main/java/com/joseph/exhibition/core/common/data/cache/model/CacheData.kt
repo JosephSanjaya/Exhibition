@@ -1,6 +1,9 @@
 package com.joseph.exhibition.core.common.data.cache.model
 
+import android.os.Parcelable
+import com.google.errorprone.annotations.Keep
 import com.joseph.exhibition.core.common.data.cache.CacheRepo
+import kotlinx.parcelize.Parcelize
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
@@ -12,6 +15,7 @@ import java.time.temporal.ChronoUnit
  * @param created the instant when the value was cached. Defaults to the current instant.
  * @param ttl the time-to-live duration for the value. Defaults to the default duration defined in CacheRepo.
  */
+@Keep
 data class CacheData<T>(
     val key: String,
     val value: T,

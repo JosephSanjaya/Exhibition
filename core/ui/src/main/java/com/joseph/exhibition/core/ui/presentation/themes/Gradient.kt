@@ -1,5 +1,6 @@
 package com.joseph.exhibition.core.ui.presentation.themes
 
+import androidx.annotation.Keep
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
@@ -8,6 +9,7 @@ import androidx.compose.ui.graphics.Color
  * A class to model gradient color values for AwanTunai.
  */
 @Immutable
+@Keep
 data class GradientColors(
     val primary: Color = Color.Unspecified,
     val secondary: Color = Color.Unspecified,

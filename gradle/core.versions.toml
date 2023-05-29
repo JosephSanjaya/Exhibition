@@ -7,7 +7,7 @@ app-code                    = "1"
 app-name                    = "1.0.0"
 ## -----------------------------------
 
-android-gradle              = "8.0.1"
+android-gradle              = "8.0.2"
 kotlin                      = "1.8.21"
 hilt                        = "2.44"
 detekt                      = "1.23.0-RC3"

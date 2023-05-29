@@ -12,10 +12,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
 import javax.inject.Singleton
+import kotlin.coroutines.CoroutineContext
 
 /**
  * A Dagger module that provides common dependencies for the app, such as shared preferences and gson.
@@ -69,7 +69,7 @@ class CommonModules {
     @Provides
     @Singleton
     @Named(StateContainer.TAG)
-    fun provideCoroutineContextForState(): CoroutineDispatcher {
+    fun provideCoroutineContextForState(): CoroutineContext {
         return Dispatchers.IO
     }
 }
