@@ -9,8 +9,8 @@ import androidx.navigation.compose.rememberNavController
 import com.joseph.exhibition.core.ui.presentation.navigation.NavRoute
 import com.joseph.exhibition.features.test.presentation.screen.test.TestScreenRoute
 
-private val testRoute1 = NavRoute.builder("test1").build()
-private val testRoute2 = NavRoute.builder("test2").build()
+internal val testRoute1 = NavRoute.builder("test1").build()
+internal val testRoute2 = NavRoute.builder("test2").build()
 
 @Composable
 internal fun TestNavHost(

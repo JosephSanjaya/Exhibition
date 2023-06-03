@@ -17,7 +17,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class TestViewModel @Inject constructor(
-    stateFactory: StateContainerFactory
+    stateFactory: StateContainerFactory,
 ) : ViewModel() {
 
     // The container that holds the states for this [ViewModel].

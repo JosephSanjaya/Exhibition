@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core/common" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/auth" />
             <option value="$PROJECT_DIR$/features/test" />
           </set>
         </option>

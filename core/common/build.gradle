@@ -27,10 +27,6 @@ dependencies {
     api core.bundles.coroutines
     api core.bundles.androidx.app
     api core.bundles.splitties
-
-    api platform(core.arrow.stack)
-    api core.bundles.arrow
-    ksp core.arrow.optics.compiler
     api core.mmkv
 
     api core.apache.common
