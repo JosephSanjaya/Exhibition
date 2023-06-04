@@ -6,6 +6,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.tencent.mmkv.MMKV
+import splitties.init.injectAsAppCtx
 
 /**
  * A class that implements the Initializer interface to initialize common components for the app.
@@ -14,6 +15,7 @@ class CommonComponentInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         MMKV.initialize(context)
         Firebase.initialize(context)
+        context.injectAsAppCtx()
         FirebaseCrashlytics.getInstance()
     }
 

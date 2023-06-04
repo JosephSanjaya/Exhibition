@@ -12,6 +12,8 @@ android {
         buildConfigField 'String', 'APPWRITE_HOST', "\"${local.getProperty('APPWRITE_HOST')}\""
         buildConfigField 'String', 'REMOTE_CONFIG_DB_ID', "\"${local.getProperty('REMOTE_CONFIG_DB_ID')}\""
         buildConfigField 'String', 'REMOTE_CONFIG_FLAG_ID', "\"${local.getProperty('REMOTE_CONFIG_FLAG_ID')}\""
+        buildConfigField 'String', 'REMOTE_CONFIG_STRING_ID', "\"${local.getProperty('REMOTE_CONFIG_STRING_ID')}\""
+        buildConfigField 'String', 'REMOTE_CONFIG_INT_ID', "\"${local.getProperty('REMOTE_CONFIG_INT_ID')}\""
     }
     buildFeatures {
         buildConfig true
@@ -34,6 +36,7 @@ dependencies {
     api core.app.init
     api core.compressor
     api core.appwrite
+    api core.util.codex
 
     api core.lich
     ksp core.lich.compiler

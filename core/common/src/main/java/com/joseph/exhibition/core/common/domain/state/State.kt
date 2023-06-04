@@ -11,6 +11,7 @@ import androidx.annotation.Keep
 @Keep
 data class State<T>(
     val data: T? = null,
-    val loading: Boolean = false,
+    val isLoading: Boolean = false,
+    val isFinished: Boolean = false,
     val error: StateException? = null,
 )

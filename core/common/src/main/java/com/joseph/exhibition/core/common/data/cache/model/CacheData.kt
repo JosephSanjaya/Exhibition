@@ -1,9 +1,7 @@
 package com.joseph.exhibition.core.common.data.cache.model
 
-import android.os.Parcelable
 import com.google.errorprone.annotations.Keep
 import com.joseph.exhibition.core.common.data.cache.CacheRepo
-import kotlinx.parcelize.Parcelize
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 

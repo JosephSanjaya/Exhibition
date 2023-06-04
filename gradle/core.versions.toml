@@ -32,6 +32,7 @@ app-init                    = "1.1.1"
 compressor                  = "3.0.1"
 appwrite                    = "2.0.0"
 mmkv                        = "1.2.16"
+util-codex                  = "1.31.0"
 
 # region classpath version
 firebase-crashlytics        = "2.9.2"
@@ -115,6 +116,7 @@ firebase-pref-gradle        = { module = "com.google.firebase:perf-plugin", vers
 compressor                  = { module = "id.zelory:compressor", version.ref = "compressor" }
 appwrite                    = { module = "io.appwrite:sdk-for-android", version.ref = "appwrite" }
 mmkv                        = { module = "com.tencent:mmkv", version.ref = "mmkv" }
+    util-codex                  = { module = "com.blankj:utilcodex", version.ref = "util-codex" }
 
 [bundles]
 kotlin                      = ["kotlin-stdlib", "kotlin-stdlib-jdk8", "kotlin-reflect"]

@@ -30,18 +30,17 @@ class AppWriteDbDataSource @AssistedInject constructor(
         default: T,
     ): T {
         val result = this.getOrDefault(key, default)
-        return runCatching {
+        return try {
             val casted = result as? T
             require(casted != null)
             casted
-        }.onFailure {
+        } catch (e: Exception) {
             logger.logIssueAsNonFatal(
-                it,
+                e,
                 "databaseId" to databaseId,
                 "collectionId" to collectionId,
                 "key" to key
             )
-        }.getOrElse {
             default
         }
     }

@@ -43,6 +43,7 @@ android {
 }
 
 dependencies {
+    implementation(ui.splash.screen)
     implementation(core.profile.installer)
     kapt core.hilt.compiler
     implementation project(':features:test')

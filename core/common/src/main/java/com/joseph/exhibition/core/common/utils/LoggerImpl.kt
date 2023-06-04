@@ -2,6 +2,10 @@ package com.joseph.exhibition.core.common.utils
 
 import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 
 /**
@@ -67,5 +71,21 @@ class LoggerImpl @Inject constructor(
         }
 
         return callingClassName ?: "Unknown"
+    }
+
+    /**
+     * A module that provides common bindings for the application.
+     */
+    @InstallIn(SingletonComponent::class)
+    @Module
+    internal abstract class Binder {
+
+        /**
+         * Binds the [Logger] interface to the [LoggerImpl] implementation.
+         * @param impl The [LoggerImpl] instance to be bound.
+         * @return The [Logger] instance that can be injected into other classes.
+         */
+        @Binds
+        abstract fun bind(impl: LoggerImpl): Logger
     }
 }

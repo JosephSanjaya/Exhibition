@@ -22,6 +22,8 @@ import androidx.compose.ui.semantics.testTagsAsResourceId
 @Composable
 fun Screen(
     modifier: Modifier = Modifier,
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
     components: @Composable SnackbarHostState.(PaddingValues) -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -34,6 +36,8 @@ fun Screen(
             modifier = modifier.semantics {
                 testTagsAsResourceId = true
             },
+            topBar = topBar,
+            bottomBar = bottomBar,
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.onBackground,
             contentWindowInsets = WindowInsets(0, 0, 0, 0),

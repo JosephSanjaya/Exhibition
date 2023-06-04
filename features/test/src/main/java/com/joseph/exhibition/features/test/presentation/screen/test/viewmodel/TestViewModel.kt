@@ -22,8 +22,10 @@ class TestViewModel @Inject constructor(
 
     // The container that holds the states for this [ViewModel].
     private val states: StateContainer = stateFactory.create(viewModelScope)
+
     // The state that represents the test result.
     val testState by states.state("test", State(""))
+
     // The job that performs the test logic.
     private var _doTestJob: Job? = null
     val doTestJob get() = _doTestJob
@@ -44,4 +46,3 @@ class TestViewModel @Inject constructor(
         }
     }
 }
-

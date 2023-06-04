@@ -6,6 +6,8 @@ compose-navigation           = "2.5.3"
 compose-shimmer              = "1.0.3"
 compose-hilt                 = "1.0.0"
 compose-constraint           = "1.0.1"
+splash-screen                = "1.0.0"
+coil                         = "2.4.0"
 
 [libraries]
 compose-bom                  = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -24,6 +26,8 @@ compose-shimmer              = { module = "com.valentinilk.shimmer:compose-shimm
 compose-hilt                 = { module = "androidx.hilt:hilt-navigation-compose", version.ref="compose-hilt"}
 compose-navigation           = { module = "androidx.navigation:navigation-compose", version.ref="compose-navigation"}
 compose-constraint           = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref="compose-constraint"}
+splash-screen                = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
+coil                         = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 [bundles]
 compose-ui                   = ["compose-material3", "compose-foundation","compose-ui", "compose-ui-tooling-prev",

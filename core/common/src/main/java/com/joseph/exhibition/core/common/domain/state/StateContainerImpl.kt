@@ -60,22 +60,21 @@ class StateContainerImpl @AssistedInject constructor(
         action: suspend () -> T,
     ): Job {
         val currentState = getState(key, defaultCurrentState).value as State<T>
-        val loadingState = currentState.copy(loading = true, error = null)
+        val loadingState = currentState.copy(isLoading = true, isFinished = false, error = null)
         return scope.launch(dispatcher) {
-            runCatching {
+            val newState = try {
                 val data = action()
-                loadingState.copy(data = data, loading = false)
-            }.onFailure {
-                val errorState = when (it) {
-                    is AppwriteException -> handleAppWriteError(it, loadingState)
-                    is SocketTimeoutException -> handleTimeoutError(it, loadingState)
-                    is UnknownHostException -> handleNetworkError(it, loadingState)
-                    else -> handleUnknownError(it, loadingState)
-                }
-                setState(key, errorState)
-            }.onSuccess { successState ->
-                setState(key, successState)
+                loadingState.copy(data = data, isLoading = false, isFinished = true)
+            } catch (e: AppwriteException) {
+                handleAppWriteError(e, loadingState)
+            } catch (e: SocketTimeoutException) {
+                handleTimeoutError(e, loadingState)
+            } catch (e: UnknownHostException) {
+                handleNetworkError(e, loadingState)
+            } catch (e: Exception) {
+                handleUnknownError(e, loadingState)
             }
+            setState(key, newState)
         }
     }
 
@@ -95,7 +94,8 @@ class StateContainerImpl @AssistedInject constructor(
                 StateExceptionType.TIMEOUT,
                 StateContainer.TIMEOUT_CODE
             ),
-            loading = false
+            isLoading = false,
+            isFinished = true
         )
     }
 
@@ -112,7 +112,8 @@ class StateContainerImpl @AssistedInject constructor(
                 StateExceptionType.NETWORK,
                 StateContainer.TIMEOUT_CODE
             ),
-            loading = false
+            isLoading = false,
+            isFinished = true
         )
     }
 
@@ -130,7 +131,8 @@ class StateContainerImpl @AssistedInject constructor(
                 e.code,
                 e.response
             ),
-            loading = false
+            isLoading = false,
+            isFinished = true
         )
     }
 
@@ -147,7 +149,8 @@ class StateContainerImpl @AssistedInject constructor(
                 StateExceptionType.UNKNOWN,
                 StateContainer.UNKNOWN_CODE
             ),
-            loading = false
+            isLoading = false,
+            isFinished = true
         )
     }
 

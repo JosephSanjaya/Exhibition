@@ -10,6 +10,7 @@ dependencies {
     api project(':core:common')
     api platform(ui.compose.bom)
     api ui.bundles.compose.ui
+    api ui.coil
     debugApi ui.bundles.compose.debug
     kapt core.hilt.compiler
 }

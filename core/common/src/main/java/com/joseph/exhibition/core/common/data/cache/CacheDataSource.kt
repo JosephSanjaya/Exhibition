@@ -6,6 +6,10 @@ import androidx.core.content.edit
 import com.google.gson.Gson
 import com.joseph.exhibition.core.common.data.cache.model.CacheData
 import com.joseph.exhibition.core.common.utils.Logger
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject
@@ -28,14 +32,14 @@ class CacheDataSource @Inject constructor(
         onCacheMiss: suspend () -> T
     ): T {
         val cached = sharedPreferences.getString(key, null)
-        return runCatching {
-            require(cached != null) { KotlinNullPointerException() }
+        return try {
+            requireNotNull(cached) { KotlinNullPointerException() }
             // Use a private function to deserialize the cache data
             val result = gson.fromJson<CacheData<T>>(cached, CacheData::class.java)
             require(!result.isExpired()) { KeyExpiredException() }
             result
-        }.getOrElse {
-            logger.logIssueAsNonFatal(it)
+        } catch (e: Exception) {
+            logger.logIssueAsNonFatal(e)
             val newData = create(key, onCacheMiss(), ttl)
             // Use apply to update and return the shared preferences value
             sharedPreferences.edit { putString(key, gson.toJson(newData)) }
@@ -49,5 +53,22 @@ class CacheDataSource @Inject constructor(
         ttl: Pair<Long, ChronoUnit>,
     ): CacheData<T> {
         return CacheData(key, value, Instant.now(), ttl)
+    }
+
+    /**
+     * Dagger module for binding the [CacheDataSource] implementation to [CacheRepo].
+     */
+    @InstallIn(SingletonComponent::class)
+    @Module
+    internal abstract class Binder {
+
+        /**
+         * Binds the implementation of [CacheDataSource] to [CacheRepo].
+         *
+         * @param impl The implementation of [CacheDataSource] to bind.
+         * @return The bound [CacheRepo] instance.
+         */
+        @Binds
+        abstract fun bind(impl: CacheDataSource): CacheRepo
     }
 }
