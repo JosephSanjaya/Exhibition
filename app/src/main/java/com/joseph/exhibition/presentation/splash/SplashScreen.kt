@@ -32,6 +32,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.joseph.exhibition.R
 import com.joseph.exhibition.core.common.domain.state.State
+import com.joseph.exhibition.core.ui.presentation.components.Background
+import com.joseph.exhibition.core.ui.presentation.themes.MainTheme
 import com.joseph.exhibition.domain.splash.BlockingType
 
 /**
@@ -163,5 +165,9 @@ private fun BottomVersion(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreenInternal()
+    MainTheme {
+        Background() {
+            SplashScreenInternal()
+        }
+    }
 }

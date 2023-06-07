@@ -1,6 +1,5 @@
 package com.joseph.exhibition.features.auth.data
 
-import com.joseph.exhibition.features.auth.domain.register.RegisterPayload
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

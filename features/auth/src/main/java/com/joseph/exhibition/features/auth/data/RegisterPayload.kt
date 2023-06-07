@@ -1,4 +1,4 @@
-package com.joseph.exhibition.features.auth.domain.register
+package com.joseph.exhibition.features.auth.data
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

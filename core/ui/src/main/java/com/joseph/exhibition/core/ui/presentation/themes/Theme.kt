@@ -1,10 +1,8 @@
 package com.joseph.exhibition.core.ui.presentation.themes
 
-import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.platform.LocalContext
 import com.joseph.exhibition.core.ui.presentation.themes.colors.AppColor
 
 /**
@@ -16,7 +14,7 @@ import com.joseph.exhibition.core.ui.presentation.themes.colors.AppColor
 fun MainTheme(
     content: @Composable () -> Unit
 ) {
-    val colors = AppColor(LocalContext.current as Activity)
+    val colors = AppColor()
     CompositionLocalProvider(
         LocalBackgroundTheme provides colors.getBackground()
     ) {
