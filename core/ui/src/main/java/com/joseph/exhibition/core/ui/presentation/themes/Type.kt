@@ -69,7 +69,7 @@ internal val Typography = Typography(
     titleMedium = TextStyle(
         fontFamily = roboto,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
+        fontSize = 15.sp,
         lineHeight = 24.sp
     ),
     titleSmall = TextStyle(

@@ -1,5 +1,6 @@
 package com.joseph.exhibition.core.common.domain.state
 
+import android.util.Log
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.appwrite.exceptions.AppwriteException
@@ -66,12 +67,16 @@ class StateContainerImpl @AssistedInject constructor(
                 val data = action()
                 loadingState.copy(data = data, isLoading = false, isFinished = true)
             } catch (e: AppwriteException) {
+                Log.e(AppwriteException::class.simpleName, e.response ?: e.message.toString())
                 handleAppWriteError(e, loadingState)
             } catch (e: SocketTimeoutException) {
+                Log.e(SocketTimeoutException::class.simpleName, e.message.toString())
                 handleTimeoutError(e, loadingState)
             } catch (e: UnknownHostException) {
+                Log.e(UnknownHostException::class.simpleName, e.message.toString())
                 handleNetworkError(e, loadingState)
             } catch (e: Exception) {
+                Log.e(Exception::class.simpleName, e.message.toString())
                 handleUnknownError(e, loadingState)
             }
             setState(key, newState)

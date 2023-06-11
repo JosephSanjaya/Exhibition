@@ -124,7 +124,7 @@ private fun CenterLogo(modifier: Modifier = Modifier) {
         if (LocalInspectionMode.current) {
             // Display placeholder image in inspection mode
             Image(
-                painter = painterResource(id = R.drawable.ic_splash_logo),
+                painter = painterResource(id = R.drawable.ic_big_logo),
                 contentDescription = stringResource(R.string.app_name),
                 modifier = Modifier
                     .height(100.dp)
@@ -134,7 +134,7 @@ private fun CenterLogo(modifier: Modifier = Modifier) {
             // Display async image loading in normal mode
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(R.drawable.ic_splash_logo)
+                    .data(R.drawable.ic_big_logo)
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(R.string.app_name),

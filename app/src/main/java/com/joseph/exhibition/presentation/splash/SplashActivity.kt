@@ -12,7 +12,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.joseph.exhibition.core.ui.presentation.components.Screen
 import com.joseph.exhibition.core.ui.presentation.themes.MainTheme
-import com.joseph.exhibition.features.test.presentation.activity.TestActivity
+import com.joseph.exhibition.features.auth.presentation.activity.AuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
@@ -54,7 +54,7 @@ class SplashActivity : ComponentActivity() {
     }
 
     private fun onDataFetchedSuccess() {
-        val intent = Intent(this@SplashActivity, TestActivity::class.java)
+        val intent = Intent(this@SplashActivity, AuthActivity::class.java)
         startActivity(intent)
         finish()
     }

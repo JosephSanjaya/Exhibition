@@ -1,7 +1,8 @@
-package com.joseph.exhibition.features.auth.data
+package com.joseph.exhibition.features.auth.domain.register
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import com.joseph.exhibition.core.common.utils.emptyCountry
 import io.appwrite.models.Country
 import java.time.LocalDate
 
@@ -24,37 +25,40 @@ import java.time.LocalDate
 @Keep
 data class RegisterPayload(
     @SerializedName("username")
-    val username: String,
+    val username: String = "",
 
     @SerializedName("firstName")
-    val firstName: String,
+    val firstName: String = "",
 
     @SerializedName("lastName")
-    val lastName: String,
+    val lastName: String = "",
 
     @SerializedName("email")
-    val email: String,
+    val email: String = "",
 
     @SerializedName("password")
-    val password: String,
+    val password: String = "",
+
+    @SerializedName("confirmPassword")
+    val confirmPassword: String = "",
 
     @SerializedName("tagline")
-    val tagline: String,
+    val tagline: String = "",
 
     @SerializedName("dob")
-    val dob: LocalDate,
+    val dob: LocalDate = LocalDate.MIN,
 
     @SerializedName("occupation")
-    val occupation: String,
+    val occupation: String = "",
 
     @SerializedName("country")
-    val country: Country,
+    val country: Country = emptyCountry,
 
     @SerializedName("company")
-    val company: String,
+    val company: String = "",
 
     @SerializedName("city")
-    val city: String,
+    val city: String = "",
 
     @SerializedName("socialMedia")
     val socialMedia: List<String> = listOf()
@@ -95,5 +99,49 @@ data class RegisterPayload(
         }
 
         return payloadMap
+    }
+
+    fun checkFormSignUp(): RegisterFormError {
+        var errorForm = RegisterFormError(isInit = false)
+        val passwordRegex = "^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$"
+        val taglineRegex = "^#\\w{7,}$"
+        //TODO: replace with resources
+        if (username.isEmpty()) {
+            errorForm = errorForm.copy(userNameError = "Username need to be filled.")
+        }
+
+        if (tagline.isEmpty()) {
+            errorForm = errorForm.copy(taglineError = "Tagline need to be filled.")
+        }
+
+        if (!taglineRegex.toRegex().matches(tagline)) {
+            errorForm =
+                errorForm.copy(taglineError = "Tagline format is not valid and minimum 8 char.")
+        }
+
+        if (email.isEmpty()) {
+            errorForm = errorForm.copy(emailError = "Email need to be filled.")
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            errorForm = errorForm.copy(emailError = "Email is not valid.")
+        }
+
+        if (password.isEmpty()) {
+            errorForm = errorForm.copy(passwordError = "Password need to be filled.")
+        }
+
+        if (!passwordRegex.toRegex().matches(password)) {
+            errorForm =
+                errorForm.copy(passwordError = "Password need to contains number, char, and minimum 8 characters.")
+        }
+
+        if (!password.contentEquals(confirmPassword)) {
+            errorForm = errorForm.copy(
+                passwordError = "Password not matched.",
+                confirmPasswordError = "Password not matched.",
+            )
+        }
+        return errorForm
     }
 }

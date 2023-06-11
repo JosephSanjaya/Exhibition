@@ -2,6 +2,7 @@ package com.joseph.exhibition.core.ui.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -33,9 +35,10 @@ import androidx.compose.ui.unit.dp
 import com.joseph.exhibition.core.ui.R
 import com.joseph.exhibition.core.ui.presentation.themes.MainTheme
 import com.joseph.exhibition.core.ui.presentation.themes.appColor
+import com.joseph.exhibition.core.ui.presentation.themes.colors.AppColor
 
 @Composable
-fun InputBox(
+fun InputBoxInverse(
     modifier: Modifier = Modifier,
     title: String = "",
     hint: String = "",
@@ -57,7 +60,7 @@ fun InputBox(
         Row {
             Text(
                 modifier = Modifier, text = title,
-                color = appColor.neutral.darker,
+                color = appColor.neutral.light,
                 style = MaterialTheme.typography.labelLarge
             )
             if (isRequired) Text(
@@ -74,7 +77,7 @@ fun InputBox(
             border = BorderStroke(1.dp, appColor.neutral.lightActive),
             shape = RoundedCornerShape(8.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
+                containerColor = appColor.secondary.normalActive
             )
         ) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -112,7 +115,10 @@ fun InputBox(
                         onInputChange(it)
                     },
                     visualTransformation = visualTransformation,
-                    textStyle = MaterialTheme.typography.bodySmall,
+                    textStyle = MaterialTheme.typography.bodySmall.copy(
+                        appColor.neutral.light
+                    ),
+                    cursorBrush = SolidColor(appColor.neutral.light),
                     decorationBox = { innerTextField ->
                         Box(contentAlignment = Alignment.CenterStart) {
                             if (input.isEmpty()) {
@@ -156,8 +162,8 @@ fun InputBox(
 private fun CommonInputPreview() {
     MainTheme {
         Background {
-            Column {
-                InputBox(
+            Column(Modifier.background(AppColor(true).secondary.normalActive)) {
+                InputBoxInverse(
                     modifier = Modifier.padding(16.dp),
                     title = "E-mail",
                     hint = "dublin12@example",
@@ -166,7 +172,7 @@ private fun CommonInputPreview() {
                     isRequired = true,
                     endIcon = painterResource(id = R.drawable.ic_mail) to {}
                 )
-                InputBox(
+                InputBoxInverse(
                     modifier = Modifier.padding(16.dp),
                     title = "Nama Toko",
                     hint = "Toko Test",
@@ -174,7 +180,7 @@ private fun CommonInputPreview() {
                     input = "",
                     isRequired = true
                 )
-                InputBox(
+                InputBoxInverse(
                     modifier = Modifier.padding(16.dp),
                     title = "Nama Toko",
                     hint = "Toko Test",

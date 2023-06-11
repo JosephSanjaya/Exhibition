@@ -1,5 +1,6 @@
 package com.joseph.exhibition.features.auth.data
 
+import com.joseph.exhibition.features.auth.domain.register.RegisterPayload
 import io.appwrite.models.Jwt
 import io.appwrite.models.Session
 

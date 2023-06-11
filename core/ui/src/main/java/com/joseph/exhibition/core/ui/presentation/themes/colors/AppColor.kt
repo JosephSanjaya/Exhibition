@@ -1,10 +1,10 @@
 package com.joseph.exhibition.core.ui.presentation.themes.colors
 
 import android.app.Activity
+import android.content.Context
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalInspectionMode
+import com.blankj.utilcode.util.ActivityUtils
 import com.joseph.exhibition.core.ui.presentation.di.ColorEntryPoint
 import com.joseph.exhibition.core.ui.presentation.themes.BackgroundTheme
 import com.joseph.exhibition.core.ui.presentation.themes.colors.variants.ColorVariant
@@ -28,9 +28,8 @@ interface AppColor {
     fun getBackground(): BackgroundTheme
 
     companion object {
-        @Composable
-        operator fun invoke(): AppColor {
-            return if (LocalInspectionMode.current) {
+        operator fun invoke(isInEditMode: Boolean): AppColor {
+            return if (isInEditMode) {
                 AppColorImpl(
                     ErrorColor(),
                     NeutralColor(),
@@ -41,7 +40,7 @@ interface AppColor {
                 )
             } else {
                 val entryPoint = EntryPointAccessors.fromActivity(
-                    LocalContext.current as Activity,
+                    ActivityUtils.getTopActivity(),
                     ColorEntryPoint::class.java
                 )
                 entryPoint.getAppColor()
