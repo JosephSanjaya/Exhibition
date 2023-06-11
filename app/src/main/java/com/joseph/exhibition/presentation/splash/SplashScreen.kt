@@ -32,6 +32,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.joseph.exhibition.R
 import com.joseph.exhibition.core.common.domain.state.State
+import com.joseph.exhibition.core.ui.presentation.components.Background
+import com.joseph.exhibition.core.ui.presentation.themes.MainTheme
 import com.joseph.exhibition.domain.splash.BlockingType
 
 /**
@@ -122,7 +124,7 @@ private fun CenterLogo(modifier: Modifier = Modifier) {
         if (LocalInspectionMode.current) {
             // Display placeholder image in inspection mode
             Image(
-                painter = painterResource(id = R.drawable.ic_splash_logo),
+                painter = painterResource(id = R.drawable.ic_big_logo),
                 contentDescription = stringResource(R.string.app_name),
                 modifier = Modifier
                     .height(100.dp)
@@ -132,7 +134,7 @@ private fun CenterLogo(modifier: Modifier = Modifier) {
             // Display async image loading in normal mode
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(R.drawable.ic_splash_logo)
+                    .data(R.drawable.ic_big_logo)
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(R.string.app_name),
@@ -163,5 +165,9 @@ private fun BottomVersion(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-    SplashScreenInternal()
+    MainTheme {
+        Background() {
+            SplashScreenInternal()
+        }
+    }
 }

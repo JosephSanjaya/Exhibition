@@ -47,4 +47,5 @@ dependencies {
     implementation(core.profile.installer)
     kapt core.hilt.compiler
     implementation project(':features:test')
+    implementation project(':features:auth')
 }
